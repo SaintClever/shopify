@@ -8,22 +8,25 @@ class App():
 
     def create_item(self):
         item = input('create item: ')
-        self.inventory[item] = 1
+        self.inventory[item] = 0
+        print(f'{item} added to inventory: ')
 
 
     def edit_item(self):
-        item, item_amount = input('add or subtract item (Ex: item "shirt 10"): ').split()
+        item, item_amount = input('add or subtract item (Ex: "shirt 10"): ').split()
         # print(item, item_amount)
         self.inventory[item] += int(item_amount)
+        print(f'{item}: {self.inventory[item]} in inventory')
 
 
     def delete_item(self):
-        item = input('Delete item (are you sure): ')
+        item = input('Delete item (Ex: "shirt"): ')
         self.inventory.pop(item, None)
+        print(f'Removed {item} from inventory')
 
 
     def view_iventory(self):
-        print(self.inventory)
+        print(f'Current inventory: {self.inventory}')
 
 
     def start_app(self):
@@ -39,9 +42,12 @@ class App():
             self.view_iventory()
         elif method == 'quit':
             quit()
+        else:
+            print('Invalid input')
 
         self.start_app()
 
 
 app = App()
+print('''\n--- INSTRUCTIONS ---\ncreate: puts item in inventory\nedit: edits the total items\ndelet: removes items\nquit: quits application''')
 app.start_app()
