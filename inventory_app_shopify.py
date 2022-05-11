@@ -7,18 +7,19 @@ class App():
     
 
     def create_item(self):
-        item = input('Add item: ')
+        item = input('create item: ')
         self.inventory[item] = 1
 
 
     def edit_item(self):
-        item, item_amount = input('add or subtract item (Ex: item name: amount): ').split()
+        item, item_amount = input('add or subtract item (Ex: item "shirt 10"): ').split()
+        # print(item, item_amount)
         self.inventory[item] += int(item_amount)
 
 
     def delete_item(self):
         item = input('Delete item (are you sure): ')
-        self.inventory(item, None)
+        self.inventory.pop(item, None)
 
 
     def view_iventory(self):
@@ -26,7 +27,7 @@ class App():
 
 
     def start_app(self):
-        method = input('Inventory options: create | edit | delete | view | quit')
+        method = input('\nInventory options: create | edit | delete | view | quit: ')
 
         if method == 'create':
             self.create_item()
