@@ -14,7 +14,6 @@ class App():
 
     def edit_item(self):
         item, item_amount = input('add or subtract item (Ex: "shirt 10"): ').split()
-        # print(item, item_amount)
         self.inventory[item] += int(item_amount)
         print(f'{item}: {self.inventory[item]} in inventory')
 
