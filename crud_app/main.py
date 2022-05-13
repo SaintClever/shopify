@@ -18,3 +18,21 @@ class Inventory(db.Model):
     dateAdded = db.Column(db.DateTime, default=datetime.now())
 
 
+def create_inventory(text):
+    inventory_item = Inventory(text=text)
+    db.session.add(inventory_item)
+    db.session.commit()
+    db.session.refresh(inventory_item)
+
+
+def view_inventory(inventory_item_id, text, done):
+    db.session.query(Inventory).filter_by(id=inventory_item_id).update({
+        'text': text,
+        'done': True if done == 'on' else False
+    })
+    db.session.commit()
+
+
+def delete_inventory_item(inventory_item_id):
+    db.session.query(Inventory).filter_by(id=inventory_item_id).delete()
+    db.session.commit()
